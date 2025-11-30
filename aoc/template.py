@@ -34,6 +34,6 @@ def create_day(day: int):
     (folder / "__init.py__").write_text("")
     (folder / "input.txt").write_text("")
     (folder / "solution.py").write_text(TEMPLATE)
-    (folder / "test_solution.py").write_text(TEST_TEMPLATE)
+    (folder / "test_solution.py").write_text(TEST_TEMPLATE.format(day=day))
 
     print(f"Created {folder}")
