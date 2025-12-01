@@ -12,7 +12,7 @@ class Move:
 input_data_path = Path(__file__).parent.resolve() / "input.txt"
 
 
-def get_moves(file_path: str) -> tuple[list[int], list[int]]:
+def get_moves(file_path: str) -> list[Move]:
     moves = []
     with open(file_path, "r") as f:
         for line in f:

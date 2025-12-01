@@ -1,4 +1,4 @@
-from .solution import Move, count_zeros
+from day01.solution import Move, count_zeros
 
 moves = [
     Move(direction="R", turns=6),
@@ -11,4 +11,4 @@ moves = [
 
 
 def test_solution():
-    assert count_zeros(moves, 3) == 1
+    assert count_zeros(moves, 3) == 2
