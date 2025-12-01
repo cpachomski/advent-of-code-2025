@@ -1,12 +1,14 @@
-from .solution import distance_between_lists
+from .solution import Move, count_zeros
 
-
-list_1 = [1, 2, 3, 4, 5]
-list_2 = [0, 0, 3, -1, 1]
-diff = 12
-
-print(zip(list_1, list_2))
+moves = [
+    Move(direction="R", turns=6),
+    Move(direction="L", turns=12),
+    Move(direction="R", turns=3),
+    Move(direction="L", turns=20),
+    Move(direction="R", turns=21),
+    Move(direction="L", turns=1),
+]
 
 
 def test_solution():
-    assert distance_between_lists(list_1, list_2) == diff
+    assert count_zeros(moves, 3) == 1

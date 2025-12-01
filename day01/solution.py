@@ -1,27 +1,48 @@
 from pathlib import Path
+from typing import Literal
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class Move:
+    direction: Literal["L", "R"]
+    turns: int
 
 
 input_data_path = Path(__file__).parent.resolve() / "input.txt"
 
 
-def parse_lists(file_path: str) -> tuple[list[int], list[int]]:
-    list_1, list_2 = [], []
+def get_moves(file_path: str) -> tuple[list[int], list[int]]:
+    moves = []
     with open(file_path, "r") as f:
         for line in f:
-            first, second = map(int, line.split())
-            list_1.append(first)
-            list_2.append(second)
+            chars = list(line)
+            direction = chars[0]
+            turns = int("".join(chars[1:]))
+            moves.append(Move(direction=direction, turns=turns))
 
-    return list_1, list_2
+    return moves
 
 
-def distance_between_lists(list_1: list[int], list_2: list[int]) -> int:
-    sorted_1 = sorted(list_1)
-    sorted_2 = sorted(list_2)
+def turn(current, move) -> int:
+    if move.direction == "R":
+        return (current + move.turns - 100) % 100
+    elif move.direction == "L":
+        return (current - move.turns - 100) % 100
 
-    return sum(abs(a - b) for a, b in zip(sorted_1, sorted_2))
+
+def count_zeros(moves: list[Move], start: int) -> int:
+    current = start
+    zeros = 0
+    for move in moves:
+        current = turn(current, move)
+        if current == 0:
+            zeros += 1
+
+    return zeros
 
 
 def solve():
-    list_1, list_2 = parse_lists(input_data_path)
-    return distance_between_lists(list_1, list_2)
+    start = 50
+    moves = get_moves(input_data_path)
+    return count_zeros(moves, start)
