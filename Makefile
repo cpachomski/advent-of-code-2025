@@ -1,10 +1,6 @@
 .PHONY: run test
 RUN = uv run 
 
-
-list:
-	$(RUN) -m aoc.cli list
-
 run:
 	$(RUN) -m aoc.cli run $(d)
 

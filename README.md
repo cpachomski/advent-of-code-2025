@@ -1,6 +1,6 @@
 # Advent of Code 2025
 
-Small personal workspace for solving Advent of Code 2025 puzzles.
+Small personal workspace for solving.
 
 This repository contains per-day solution folders and a small CLI in `aoc/` to easily create, run, test, and benchmark each day's solution.
 
