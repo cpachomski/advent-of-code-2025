@@ -12,10 +12,6 @@ This repository contains per-day solution folders and a small CLI in `aoc/` to e
 
 The Makefile defines a few convenient targets. The Makefile uses a variable `RUN` set to `uv run` by default; if `uv` isn't available on your system you can change `RUN` to `python -m` or `python3 -m`.
 
-- `make list`
-  - Lists day folders (calls `aoc.cli list`).
-  - Example: `make list`
-
 - `make run d=<N>`
   - Runs the `solve()` function for the specified day (calls `aoc.cli run`).
   - Example: `make run d=1` will run `day01/solution.py` via the CLI.
