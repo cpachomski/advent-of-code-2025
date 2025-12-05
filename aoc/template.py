@@ -10,9 +10,6 @@ def solve() -> int:
     path = Path(__file__).parent / "input.txt"
     # TODO: implement
     return 0
-
-if __name__ == "__main__":
-    print(solve())
 """
 
 
