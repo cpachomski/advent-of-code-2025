@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 from dataclasses import dataclass
+from itertools import chain
 
 
 @dataclass(frozen=True)
@@ -18,35 +19,26 @@ def get_ranges(file_path: str) -> List[Range]:
         ]
 
 
-def has_even_num_of_digits(num: int) -> bool:
-    return len(str(num)) % 2 == 0
-
-
 def is_invalid_num(num: int) -> bool:
+    str_num = str(num)
+
     # Invalid numbers must have an even length
-    if not has_even_num_of_digits(num):
+    if len(str_num) % 2 != 0:
         return False
+
+    # Number is invalid if first half === second half
     else:
-        str_num = str(num)
         first_half = str_num[0 : len(str_num) // 2]
         second_half = str_num[len(str_num) // 2 :]
         return first_half == second_half
 
 
-def get_invalid_range_sum(r: Range) -> int:
-    invalid_sum = 0
-    for num in range(r.start, r.end + 1):
-        if is_invalid_num(num):
-            invalid_sum += num
-
-    return invalid_sum
-
-
 def get_total_invalid_sum(ranges: List[Range]) -> int:
-    invalid_sum = 0
-    for r in ranges:
-        invalid_sum += get_invalid_range_sum(r)
-    return invalid_sum
+    all_nums_in_ranges = chain.from_iterable(range(r.start, r.end + 1) for r in ranges)
+
+    all_invalid_nums = [num for num in all_nums_in_ranges if is_invalid_num(num)]
+
+    return sum(all_invalid_nums)
 
 
 def solve() -> int:
